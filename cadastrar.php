@@ -10,11 +10,11 @@
 	<div id="corpo-form-cad">
 	<h1>Cadastrar</h1>
 	<form method="POST" action="processa.php">
-		<input type="text" placeholder="Nome completo">
-		<input type="text" placeholder="Telefone">
-		<input type="email" placeholder="Usuario" name="">
-		<input type="password" placeholder="Senha" name="">
-		<input type="password" placeholder="Confirmar Senha" name="">
+		<input type="text" name="nome" placeholder="Nome completo" maxlength="30">
+		<input type="text" name="telefone" placeholder="Telefone" maxlength="30">
+		<input type="email" name="email" placeholder="Usuario" maxlength="40">
+		<input type="password" name="senha" placeholder="Senha" maxlength="15">
+		<input type="password" name="confSenha" placeholder="Confirmar Senha" maxlength="15">
 		<input type="submit" value="Cadastrar">
 		
 	</div>	
