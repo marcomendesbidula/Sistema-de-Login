@@ -45,6 +45,23 @@
 		public function logar($email, $senha)
 		{
 			global $pdo;
+			//Verificar se o email e senha estão cadastrados
+			$sql = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE email = :e AND senha = :s");
+			$sql->bindValue(":e",$email);
+			$sql->bindValue(":s",$senha);
+			$sql->execute();
+			if($sql->rowCont() > 0)
+			{
+				$dado = $sql->fech();
+				session_start();
+				$_SESSION['id_usuario'] = ['id_usuario'];
+				return true; //cadastrado com sucesso
+
+			}else {
+				return false;
+			}
+			
+
 		}
 
 	
