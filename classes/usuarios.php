@@ -1,8 +1,5 @@
 <?php 
 
-	/**
-	 * 
-	 */
 	class usuario
 	{
 		private $pdo;
@@ -27,18 +24,21 @@
 			$sql = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE email = :e");
 			$sql->bindValue(":e",$email);
 			$sql->execute();
-			if(sql->rowCont() > 0)
+			if($sql->rowCount() > 0)
 			{
-				retur false;
-			}else{
+				return false; // Ja esta cadastrado
+			}
+			else
+			{
 				//Caso não, cadastrar
 				$sql = pdo->prepare("INSERT INTO usuarios(nome, telefone, email, senha) values (:n, :t, :e, :s)");
 				$sql->bindValue(":n",$nome);
 				$sql->bindValue(":t",$telefone);
 				$sql->bindValue(":e",$email);
-				$sql->bindValue(":s",$senha);
+				$sql->bindValue(":s",ms5($senha));
 				$sql->execute();
-				return true;
+
+				return true;//tudo certo
 			}
 		}
 
@@ -48,7 +48,7 @@
 			//Verificar se o email e senha estão cadastrados
 			$sql = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE email = :e AND senha = :s");
 			$sql->bindValue(":e",$email);
-			$sql->bindValue(":s",$senha);
+			$sql->bindValue(":s",md5($senha));
 			$sql->execute();
 			if($sql->rowCont() > 0)
 			{
